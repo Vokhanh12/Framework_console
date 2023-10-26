@@ -24,6 +24,8 @@ namespace qlcc.DAO
                 {
                     cnn.Open();
                 }
+
+                 MessageBox.Show("ket noi thanh cong");
                
             }
             catch (Exception)
