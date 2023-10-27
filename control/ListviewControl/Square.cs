@@ -12,7 +12,7 @@ namespace qlcc.control.ListviewControl
         {
             _id = id;
             _Text = Text;
-            RowSize = Text.Length + 7;
+            RowSize = Text.Length + 15;
         }
 
         public int? RowSize { get => _rowSize; set => _rowSize = value; }
