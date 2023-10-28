@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Security;
 using System.Threading.Tasks;
+using qlcc.GUI;
 
 namespace MyApp
 {
@@ -10,21 +11,11 @@ namespace MyApp
         
         static void Main(string[] args)
         {
-             A();
-             B();
+            PreferenceGUI.formLoad();
 
         }
 
-        public static void A()
-        {
-            Console.WriteLine(a+"A");
-        }
-
-        public static void B()
-        {
-            a = "hello";
-            Console.WriteLine(a+"B");
-        }
+      
        
     }
 

@@ -38,13 +38,31 @@ namespace qlcc.control
             _lstrow.Add(square);
         }
 
-        public void show()
+        public async void show()
         {
+            Task t1 = new Task(
+                () => {
+                    Thread.Sleep(1500);
+                    showRow(_lstrow);
+                }
+            );
+
+
+            Task t2 = new Task(
+                () => {
+                    showColumn();
+                }
+            );
+
+            t1.Start();
+            t2.Start();
             
-            showRow(_lstrow);
+            t1.Wait();
+            t2.Wait();
 
 
-            showColumn();
+            Console.WriteLine("Hello");
+
 
 
         }
@@ -63,18 +81,25 @@ namespace qlcc.control
             for(int i = 0; i<numItems; i++)
             {
                 List<Square> lstCurrent = new List<Square>();
+
                 lstCurrent.Add(new Square(i,dt.Rows[i][0].ToString()));
                  excuteGetMaxSize(dt.Rows[i][0].ToString(),0);
+
                 lstCurrent.Add(new Square(i,dt.Rows[i][1].ToString()));
                  excuteGetMaxSize(dt.Rows[i][1].ToString(),1);
+                 
                 lstCurrent.Add(new Square(i,dt.Rows[i][2].ToString()));
                  excuteGetMaxSize(dt.Rows[i][2].ToString(),2);
+
                 lstCurrent.Add(new Square(i,dt.Rows[i][3].ToString()));
                  excuteGetMaxSize(dt.Rows[i][3].ToString(),3);
+
                 lstCurrent.Add(new Square(i,dt.Rows[i][4].ToString()));
                  excuteGetMaxSize(dt.Rows[i][4].ToString(),4);
+
                 lstCurrent.Add(new Square(i,dt.Rows[i][5].ToString()));
                  excuteGetMaxSize(dt.Rows[i][5].ToString(),5);
+                 
                 lstCurrent.Add(new Square(i,dt.Rows[i][6].ToString()));
                  excuteGetMaxSize(dt.Rows[i][6].ToString(),6);
 
@@ -85,6 +110,7 @@ namespace qlcc.control
 
             }
 
+        
 
             for(int i = 0; i< numItems; i++)
             {
@@ -98,6 +124,8 @@ namespace qlcc.control
                 newLstKey.Add(items);
               }
 
+              //--------bug---------
+              Thread.Sleep(1500);
               showHelper(newLstKey);
               j=0;
             }
@@ -110,29 +138,25 @@ namespace qlcc.control
 
             }
 
-
-      
-
-       
-          
-
-
         }
 
         private void showRow(List<Square> lstSquare)
         {
 
-
             List<Square> newLstSquare = new List<Square>();
 
             int k = 0;
+      
 
             foreach(var item in lstSquare)
             {
-                item.RowSize = maxSizeToRow[k];
+                item.RowSize = maxSizeToRow[k] + 15;
                 newLstSquare.Add(item);
+
                 k++;
             }
+
+        
 
             for(int i = 0; i < Square._columnSize; i++)
             {
@@ -144,16 +168,26 @@ namespace qlcc.control
                          Console.Write(".");
                         else
                         {
-                            Console.Write($"--     {items.Text}     --.");
+                            Console.Write("--    ");
+                            Console.Write($" {items.Text}");
+
+
+                            for(int l = 0; l <  items.RowSize - items.Text.Length - 15 ; l++)
+                            {
+                                Console.Write(" ");
+                            }
+
+                            Console.Write("    --.");
+
                             break;
                         }
 
+
                     }
 
-                    
                 }
 
-                Console.WriteLine();             
+                    Console.WriteLine();
 
             }
 
