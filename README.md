@@ -32,6 +32,15 @@ ListView:
 Results:
 
 
+```bash
+git glone project
+```
+
+```bash
+dotnet run
+```
+
+
 
 ![image](https://github.com/Vokhanh12/Framework_console/assets/36543564/4a07fda4-30ed-49d9-a983-d4c4ceb5b450)
 
